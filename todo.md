@@ -21,4 +21,4 @@
 - [x] Kiểm tra bản dựng sau khi mở rộng cấu hình.
 - [x] Rà soát tìm kiếm hiện có và các trạng thái hiển thị.
 - [x] Bổ sung nút xoá nhanh, trạng thái kết quả và nội dung cấu hình cho tìm kiếm.
-- [ ] Kiểm tra tìm kiếm trên bản xem trước và GitHub Pages.
+- [x] Kiểm tra tìm kiếm trên bản xem trước và GitHub Pages.
