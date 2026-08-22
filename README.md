@@ -11,7 +11,15 @@ pnpm dev
 
 ## Tùy chỉnh danh mục
 
-Mở `client/src/pages/Home.tsx` và chỉnh mảng `apps`. Mỗi mục gồm tên ứng dụng, thể loại, phiên bản, dung lượng, ngày cập nhật và phần mô tả. Để thêm liên kết tải thật, chỉ sử dụng tệp APK hoặc trang tải mà bạn có quyền phân phối; sau đó cập nhật hàm `handleDownload` theo URL tương ứng.
+Website tải danh mục khi chạy từ tệp `client/public/apps.json`. Bạn chỉ cần sửa tệp JSON này, không cần chỉnh giao diện. Mỗi ứng dụng gồm tên, thể loại, phiên bản, dung lượng, ngày cập nhật, mô tả, màu nhận diện, nhãn, trạng thái nổi bật và trường `downloadUrl`.
+
+Ví dụ, để thêm đường dẫn tải cho một mục, thay giá trị rỗng bằng URL HTTPS hợp lệ:
+
+```json
+"downloadUrl": "https://ten-mien-cua-ban.example/tai/xung-dung.apk"
+```
+
+Khi người dùng nhấn **Lấy APK an toàn**, website sẽ mở `downloadUrl` trong một tab mới. Chỉ thêm liên kết tới tệp APK hoặc trang tải mà bạn có quyền phân phối.
 
 ## Xuất bản bằng GitHub Pages
 
@@ -26,4 +34,3 @@ Tệp `.github/workflows/deploy-pages.yml` đã tự động build và triển k
 ## Lưu ý phân phối APK
 
 Giao diện hiện có dữ liệu minh hoạ để bạn thay thế. Không đưa liên kết tải hoặc tệp APK mà bạn không được phép phân phối. Luôn cung cấp thông tin phiên bản, dung lượng và nguồn tải rõ ràng cho người dùng.
-

@@ -1,0 +1,3 @@
+- [x] Tạo tệp JSON riêng cho danh mục ứng dụng và liên kết tải APK.
+- [x] Cập nhật giao diện để đọc danh mục từ tệp dữ liệu.
+- [x] Kiểm tra bản dựng và bổ sung hướng dẫn chỉnh sửa dữ liệu.

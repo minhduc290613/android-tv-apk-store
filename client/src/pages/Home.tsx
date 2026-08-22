@@ -26,123 +26,7 @@ import {
   X,
 } from "lucide-react";
 import { toast } from "sonner";
-
-type Category = "Tất cả" | "Giải trí" | "Công cụ" | "Trình phát" | "Trẻ em";
-
-type AppItem = {
-  id: string;
-  name: string;
-  category: Exclude<Category, "Tất cả">;
-  version: string;
-  size: string;
-  updated: string;
-  description: string;
-  accent: string;
-  glyph: string;
-  featured?: boolean;
-  tags: string[];
-};
-
-const apps: AppItem[] = [
-  {
-    id: "nova-stream",
-    name: "Nova Stream TV",
-    category: "Giải trí",
-    version: "2.8.4",
-    size: "38 MB",
-    updated: "Hôm nay",
-    description: "Tập hợp nội dung video yêu thích trong một giao diện tối ưu cho màn hình lớn.",
-    accent: "#ffb000",
-    glyph: "N",
-    featured: true,
-    tags: ["4K", "Android TV"],
-  },
-  {
-    id: "cinema-box",
-    name: "Cinema Box",
-    category: "Giải trí",
-    version: "5.1.0",
-    size: "42 MB",
-    updated: "2 ngày trước",
-    description: "Thư viện phim cá nhân gọn gàng, bố cục trực quan cho điều khiển từ xa.",
-    accent: "#d95828",
-    glyph: "C",
-    tags: ["TV remote", "HD"],
-  },
-  {
-    id: "file-pilot",
-    name: "File Pilot",
-    category: "Công cụ",
-    version: "1.9.7",
-    size: "16 MB",
-    updated: "3 ngày trước",
-    description: "Duyệt tệp, USB và bộ nhớ mạng với thao tác đơn giản trên TV.",
-    accent: "#33a6a5",
-    glyph: "F",
-    tags: ["SMB", "USB"],
-  },
-  {
-    id: "screen-cast",
-    name: "Screen Cast Now",
-    category: "Công cụ",
-    version: "3.2.1",
-    size: "21 MB",
-    updated: "5 ngày trước",
-    description: "Trình chiếu nội dung trong nhà trên màn hình TV một cách nhanh chóng.",
-    accent: "#5266df",
-    glyph: "S",
-    tags: ["Cast", "Nhanh"],
-  },
-  {
-    id: "cloud-play",
-    name: "Cloud Play",
-    category: "Trình phát",
-    version: "4.0.3",
-    size: "57 MB",
-    updated: "Hôm qua",
-    description: "Trình phát nhẹ với hàng đợi rõ ràng, phụ đề và phím tắt điều khiển.",
-    accent: "#8a62d3",
-    glyph: "P",
-    featured: true,
-    tags: ["Subtitles", "4K"],
-  },
-  {
-    id: "sound-room",
-    name: "Sound Room",
-    category: "Trình phát",
-    version: "1.6.2",
-    size: "31 MB",
-    updated: "1 tuần trước",
-    description: "Một không gian âm thanh tối giản cho danh sách nhạc ở phòng khách.",
-    accent: "#e08437",
-    glyph: "S",
-    tags: ["Audio", "Remote"],
-  },
-  {
-    id: "little-planet",
-    name: "Little Planet",
-    category: "Trẻ em",
-    version: "2.4.0",
-    size: "49 MB",
-    updated: "6 ngày trước",
-    description: "Các hoạt động học tập trực quan, dễ thao tác và thân thiện cho trẻ em.",
-    accent: "#e15388",
-    glyph: "L",
-    tags: ["Gia đình", "Học tập"],
-  },
-  {
-    id: "kidoodle-tv",
-    name: "Kidoodle TV",
-    category: "Trẻ em",
-    version: "3.0.6",
-    size: "35 MB",
-    updated: "8 ngày trước",
-    description: "Góc xem được thiết kế với nội dung phù hợp cho buổi tối gia đình.",
-    accent: "#55a37b",
-    glyph: "K",
-    tags: ["Gia đình", "TV"],
-  },
-];
+import { loadAppCatalog, type AppItem, type Category } from "@/lib/app-catalog";
 
 const categories: { name: Category; icon: typeof Grid2X2; description: string }[] = [
   { name: "Tất cả", icon: Grid2X2, description: "Toàn bộ thư viện" },
@@ -196,6 +80,8 @@ function AppCard({ app, onOpen }: { app: AppItem; onOpen: (app: AppItem) => void
 export default function Home() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<Category>("Tất cả");
+  const [apps, setApps] = useState<AppItem[]>([]);
+  const [catalogState, setCatalogState] = useState<"loading" | "ready" | "error">("loading");
   const [selectedApp, setSelectedApp] = useState<AppItem | null>(null);
   const [navOpen, setNavOpen] = useState(false);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -211,6 +97,21 @@ export default function Home() {
 
   const featured = apps.filter((app) => app.featured);
   const recommended = apps.filter((app) => app.category === "Công cụ" || app.category === "Trình phát");
+
+  useEffect(() => {
+    let isCurrent = true;
+    loadAppCatalog()
+      .then((catalog) => {
+        if (!isCurrent) return;
+        setApps(catalog);
+        setCatalogState("ready");
+      })
+      .catch(() => {
+        if (!isCurrent) return;
+        setCatalogState("error");
+      });
+    return () => { isCurrent = false; };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -234,8 +135,12 @@ export default function Home() {
   };
 
   const handleDownload = (app: AppItem) => {
+    if (app.downloadUrl.trim()) {
+      window.open(app.downloadUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
     toast.info(`Chưa có tệp APK hợp pháp cho ${app.name}`, {
-      description: "Hãy thay link tải trong danh mục trước khi xuất bản website.",
+      description: "Hãy thêm downloadUrl cho ứng dụng này trong tệp apps.json.",
     });
   };
 
@@ -286,10 +191,10 @@ export default function Home() {
             <p className="hero__lede">Tuyển chọn ứng dụng tối ưu cho màn hình lớn, thao tác mượt bằng điều khiển từ xa.</p>
             <div className="hero__actions">
               <a className="button button--amber" href="#library">Khám phá thư viện <ArrowRight size={18} /></a>
-              <button className="button button--quiet" onClick={() => setSelectedApp(featured[0])}><Info size={18} /> Xem nổi bật</button>
+              <button className="button button--quiet" onClick={() => featured[0] && setSelectedApp(featured[0])} disabled={!featured[0]}><Info size={18} /> Xem nổi bật</button>
             </div>
           </div>
-          <div className="hero__counter"><strong>08</strong><span>ứng dụng<br />được chọn lọc</span></div>
+          <div className="hero__counter"><strong>{String(apps.length).padStart(2, "0")}</strong><span>ứng dụng<br />được chọn lọc</span></div>
         </section>
 
         <section className="category-section" aria-label="Danh mục ứng dụng">
@@ -317,12 +222,14 @@ export default function Home() {
             <div><p className="eyebrow"><span /> THƯ VIỆN APK</p><h2 id="library-title">{category === "Tất cả" ? "Cửa hàng tuyển chọn" : category}</h2></div>
             <div className="heading-aside"><p className="section-heading__meta">{results.length} ứng dụng phù hợp</p><p className="focus-hint"><b>← →</b> Duyệt ray <b>OK</b> Xem</p></div>
           </div>
-          {results.length > 0 ? (
+          {catalogState === "loading" ? (
+            <div className="empty-state"><p>Đang tải danh mục ứng dụng…</p></div>
+          ) : results.length > 0 ? (
             <div className="app-grid">
               {results.map((app) => <AppCard key={app.id} app={app} onOpen={setSelectedApp} />)}
             </div>
           ) : (
-            <div className="empty-state"><Search size={28} /><p>Chưa tìm thấy ứng dụng phù hợp.</p><button onClick={() => { setQuery(""); setCategory("Tất cả"); }}>Xóa bộ lọc</button></div>
+            <div className="empty-state"><Search size={28} /><p>{catalogState === "error" ? "Không thể tải apps.json. Hãy kiểm tra cấu trúc tệp dữ liệu." : "Chưa tìm thấy ứng dụng phù hợp."}</p>{catalogState === "ready" && <button onClick={() => { setQuery(""); setCategory("Tất cả"); }}>Xóa bộ lọc</button>}</div>
           )}
         </section>
 
