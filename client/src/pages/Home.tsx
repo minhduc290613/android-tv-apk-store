@@ -214,10 +214,10 @@ export default function Home() {
             <p className="hero__lede">{site.hero.description}</p>
             <div className="hero__actions">
               <a className="button button--amber" href="#library">{site.hero.primaryCta} <ArrowRight size={18} /></a>
-              <button className="button button--quiet" onClick={() => featured[0] && setSelectedApp(featured[0])} disabled={!featured[0]}><Info size={18} /> {site.hero.secondaryCta}</button>
+              <button className="button button--quiet" onClick={() => featured[0] && setSelectedApp(featured[0])} disabled={!featured[0]}><Info size={18} /> {site.appLabels.featuredButton}</button>
             </div>
           </div>
-          <div className="hero__counter"><strong>{String(apps.length).padStart(2, "0")}</strong><span>{site.hero.counterLabel}</span></div>
+          <div className="hero__counter"><strong>{String(apps.length).padStart(2, "0")}</strong><span>{site.appLabels.selectedApps}</span></div>
         </section>
 
         <section className="category-section" aria-label="Danh mục ứng dụng">
@@ -232,7 +232,7 @@ export default function Home() {
                   onClick={() => chooseCategory(item.name)}
                 >
                   <Icon size={22} />
-                  <span>{item.name}</span>
+                  <span>{item.name === "Tất cả" ? site.appLabels.allApps : item.name}</span>
                   <small>{item.description}</small>
                 </button>
               );
@@ -273,7 +273,7 @@ export default function Home() {
           <div><p className="eyebrow"><span /> {site.notice.eyebrow}</p><h2 id="safety-title">{site.notice.title}</h2><p>{site.notice.description}</p></div>
         </section>
 
-        <footer className="footer"><span>{site.footer.left}</span><span>{site.footer.right}</span></footer>
+        <footer className="footer"><span>{site.footer.left}</span><span>{site.footer.madeWithLove}</span><span>{site.footer.right}</span></footer>
       </main>
 
       {selectedApp && (

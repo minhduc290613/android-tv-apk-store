@@ -20,7 +20,6 @@
     "titleAccent": "tối nay.",
     "description": "Tuyển chọn ứng dụng tối ưu cho màn hình lớn, thao tác mượt bằng điều khiển từ xa.",
     "primaryCta": "Khám phá thư viện",
-    "secondaryCta": "Xem nổi bật",
     "counterLabel": "ứng dụng được chọn lọc"
   },
   "labels": {
@@ -33,6 +32,11 @@
     "libraryTitle": "Cửa hàng tuyển chọn",
     "remoteHint": "Duyệt ray",
     "viewHint": "Xem"
+  },
+  "appLabels": {
+    "featuredButton": "Xem nổi bật",
+    "selectedApps": "Các ứng dụng được chọn lọc",
+    "allApps": "Tất cả ứng dụng"
   },
   "editorial": {
     "imageUrl": "https://androidapkst-hrb7qy2c.manus.space/manus-storage/tvkho-streaming-visual_635ce444.jpg",
@@ -55,6 +59,7 @@
   },
   "footer": {
     "left": "TVKHO APK · Giao diện cho Android TV",
+    "madeWithLove": "minhduc290613 made with love",
     "right": "Điều hướng: Tab / Enter / ↑ ↓ ← →"
   }
 }

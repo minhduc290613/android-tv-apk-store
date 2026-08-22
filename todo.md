@@ -16,3 +16,6 @@
 - [x] Kiểm tra URL tải apps.json và trạng thái danh mục ban đầu.
 - [x] Sửa logic lọc, thông báo lỗi và nút đặt lại.
 - [x] Kiểm tra bộ lọc trên GitHub Pages sau khi triển khai lại.
+- [x] Xác định các nhãn xem nổi bật, tiêu đề nhóm và ghi công cần cấu hình.
+- [x] Thêm các trường nội dung mới vào site-config.json và giao diện.
+- [x] Kiểm tra bản dựng sau khi mở rộng cấu hình.

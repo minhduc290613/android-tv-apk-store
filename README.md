@@ -25,6 +25,8 @@ Khi người dùng nhấn **Lấy APK an toàn**, website sẽ mở `downloadUrl
 
 Tệp `client/public/site-config.json` chứa thông tin chung của website. Bạn có thể thay tên trang, wordmark, URL logo, favicon, ảnh banner, phần giới thiệu, CTA, tiêu đề của các khu vực, thông tin hiển thị dưới chân trang và metadata SEO trong tệp này.
 
+Nhóm `appLabels` dùng để thay đổi tập trung nhãn **Xem nổi bật**, **Các ứng dụng được chọn lọc** và **Tất cả ứng dụng**. Trong `footer`, trường `madeWithLove` dùng cho dòng ghi công ở cuối trang, mặc định là `minhduc290613 made with love`.
+
 Các trường ảnh như `logoUrl`, `faviconUrl`, `hero.imageUrl`, `editorial.imageUrl` và `utility.imageUrl` cần là URL ảnh hợp lệ. Website tự cập nhật tiêu đề trình duyệt, mô tả và favicon theo cấu hình này. Nếu một URL ảnh bị để trống, giao diện vẫn giữ màu nền phù hợp thay vì lỗi hiển thị.
 
 ## Xuất bản bằng GitHub Pages

@@ -21,7 +21,6 @@ export type SiteConfig = {
     titleAccent: string;
     description: string;
     primaryCta: string;
-    secondaryCta: string;
     counterLabel: string;
   };
   labels: {
@@ -35,21 +34,23 @@ export type SiteConfig = {
     remoteHint: string;
     viewHint: string;
   };
+  appLabels: { featuredButton: string; selectedApps: string; allApps: string };
   editorial: { imageUrl: string; imageAlt: string; eyebrow: string; title: string; description: string; cta: string };
   utility: { imageUrl: string; imageAlt: string; eyebrow: string; title: string };
   notice: { eyebrow: string; title: string; description: string };
-  footer: { left: string; right: string };
+  footer: { left: string; madeWithLove: string; right: string };
 };
 
 export const DEFAULT_SITE_CONFIG: SiteConfig = {
   brand: { name: "TVKHO APK", wordmarkPrefix: "TV", wordmarkAccent: "KHO", wordmarkSuffix: "APK", logoUrl: "", faviconUrl: "", themeColor: "#0e1212" },
   metadata: { title: "TVKHO APK — Ứng dụng cho Android TV", description: "TVKHO APK — kho ứng dụng Android TV với giao diện tối ưu điều khiển từ xa." },
-  hero: { imageUrl: "", imageAlt: "Không gian Android TV", eyebrow: "KHO APK CHO ANDROID TV", title: "Ứng dụng đáng cài", titleAccent: "tối nay.", description: "Tuyển chọn ứng dụng tối ưu cho màn hình lớn, thao tác mượt bằng điều khiển từ xa.", primaryCta: "Khám phá thư viện", secondaryCta: "Xem nổi bật", counterLabel: "ứng dụng được chọn lọc" },
+  hero: { imageUrl: "", imageAlt: "Không gian Android TV", eyebrow: "KHO APK CHO ANDROID TV", title: "Ứng dụng đáng cài", titleAccent: "tối nay.", description: "Tuyển chọn ứng dụng tối ưu cho màn hình lớn, thao tác mượt bằng điều khiển từ xa.", primaryCta: "Khám phá thư viện", counterLabel: "ứng dụng được chọn lọc" },
   labels: { safeDownload: "Tải có kiểm soát", move: "Di chuyển", select: "Chọn", categoryEyebrow: "LỐI TẮT", categoryTitle: "Chọn theo nhu cầu", libraryEyebrow: "THƯ VIỆN APK", libraryTitle: "Cửa hàng tuyển chọn", remoteHint: "Duyệt ray", viewHint: "Xem" },
+  appLabels: { featuredButton: "Xem nổi bật", selectedApps: "Các ứng dụng được chọn lọc", allApps: "Tất cả ứng dụng" },
   editorial: { imageUrl: "", imageAlt: "Minh hoạ ứng dụng giải trí", eyebrow: "CHỌN LỌC TRONG TUẦN", title: "Giải trí, vừa đúng chất TV.", description: "", cta: "Xem danh mục giải trí" },
   utility: { imageUrl: "", imageAlt: "Minh hoạ tiện ích Android TV", eyebrow: "TỐI ƯU THIẾT BỊ", title: "Công cụ hữu ích" },
   notice: { eyebrow: "GHI NHỚ TRƯỚC KHI CÀI", title: "Chỉ thêm liên kết APK từ nguồn mà bạn có quyền phân phối.", description: "" },
-  footer: { left: "TVKHO APK · Giao diện cho Android TV", right: "Điều hướng: Tab / Enter / ↑ ↓ ← →" },
+  footer: { left: "TVKHO APK · Giao diện cho Android TV", madeWithLove: "minhduc290613 made with love", right: "Điều hướng: Tab / Enter / ↑ ↓ ← →" },
 };
 
 function isText(value: unknown): value is string { return typeof value === "string"; }
@@ -57,14 +58,18 @@ function isText(value: unknown): value is string { return typeof value === "stri
 export function isSiteConfig(value: unknown): value is SiteConfig {
   if (!value || typeof value !== "object") return false;
   const config = value as Record<string, unknown>;
-  const parts = ["brand", "metadata", "hero", "labels", "editorial", "utility", "notice", "footer"];
+  const parts = ["brand", "metadata", "hero", "labels", "appLabels", "editorial", "utility", "notice", "footer"];
   if (!parts.every((key) => config[key] && typeof config[key] === "object")) return false;
   const brand = config.brand as Record<string, unknown>;
   const hero = config.hero as Record<string, unknown>;
   const metadata = config.metadata as Record<string, unknown>;
+  const appLabels = config.appLabels as Record<string, unknown>;
+  const footer = config.footer as Record<string, unknown>;
   return ["name", "wordmarkPrefix", "wordmarkAccent", "wordmarkSuffix", "logoUrl", "faviconUrl", "themeColor"].every((key) => isText(brand[key]))
     && ["title", "description"].every((key) => isText(metadata[key]))
-    && ["imageUrl", "imageAlt", "eyebrow", "title", "titleAccent", "description", "primaryCta", "secondaryCta", "counterLabel"].every((key) => isText(hero[key]));
+    && ["imageUrl", "imageAlt", "eyebrow", "title", "titleAccent", "description", "primaryCta", "counterLabel"].every((key) => isText(hero[key]))
+    && ["featuredButton", "selectedApps", "allApps"].every((key) => isText(appLabels[key]))
+    && ["left", "madeWithLove", "right"].every((key) => isText(footer[key]));
 }
 
 export async function loadSiteConfig(): Promise<SiteConfig> {
