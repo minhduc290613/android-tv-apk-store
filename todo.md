@@ -7,6 +7,6 @@
 - [x] Xác định các nguồn khai báo phiên bản pnpm trong dự án và workflow.
 - [x] Điều chỉnh workflow để chỉ dùng một nguồn phiên bản pnpm.
 - [x] Kiểm tra bản dựng sau khi sửa cấu hình triển khai.
-- [ ] Kiểm tra trạng thái GitHub Pages của repository.
-- [ ] Kích hoạt GitHub Pages với nguồn GitHub Actions nếu chưa được bật.
-- [ ] Xác minh workflow Pages sau khi cập nhật cấu hình.
+- [x] Kiểm tra trạng thái GitHub Pages của repository.
+- [x] Kích hoạt GitHub Pages với nguồn GitHub Actions nếu chưa được bật.
+- [x] Xác minh workflow Pages sau khi cập nhật cấu hình.
