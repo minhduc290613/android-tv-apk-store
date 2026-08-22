@@ -4,8 +4,8 @@
     "wordmarkPrefix": "TV",
     "wordmarkAccent": "KHO",
     "wordmarkSuffix": "APK",
-    "logoUrl": "https://androidapkst-hrb7qy2c.manus.space/manus-storage/tvkho-logo-mark_3a36f3d5.png",
-    "faviconUrl": "https://androidapkst-hrb7qy2c.manus.space/manus-storage/tvkho-logo-mark_3a36f3d5.png",
+    "logoUrl": "https://github.com/minhduc290613/android-tv-apk-store/releases/download/tvkho-assets-v1/tvkho-logo-mark.png",
+    "faviconUrl": "https://github.com/minhduc290613/android-tv-apk-store/releases/download/tvkho-assets-v1/tvkho-logo-mark.png",
     "themeColor": "#0e1212"
   },
   "metadata": {
@@ -13,7 +13,7 @@
     "description": "TVKHO APK — kho ứng dụng Android TV với giao diện tối ưu điều khiển từ xa."
   },
   "hero": {
-    "imageUrl": "https://androidapkst-hrb7qy2c.manus.space/manus-storage/tvkho-hero-living-room_e276c13e.jpg",
+    "imageUrl": "https://github.com/minhduc290613/android-tv-apk-store/releases/download/tvkho-assets-v1/tvkho-hero-living-room.jpg",
     "imageAlt": "Không gian phòng khách với Android TV",
     "eyebrow": "KHO APK CHO ANDROID TV",
     "title": "Ứng dụng đáng cài",
@@ -46,7 +46,7 @@
     "resultSuffix": "ứng dụng phù hợp"
   },
   "editorial": {
-    "imageUrl": "https://androidapkst-hrb7qy2c.manus.space/manus-storage/tvkho-streaming-visual_635ce444.jpg",
+    "imageUrl": "https://github.com/minhduc290613/android-tv-apk-store/releases/download/tvkho-assets-v1/tvkho-streaming-visual.jpg",
     "imageAlt": "Minh hoạ ứng dụng giải trí",
     "eyebrow": "CHỌN LỌC TRONG TUẦN",
     "title": "Giải trí, vừa đúng chất TV.",
@@ -54,7 +54,7 @@
     "cta": "Xem danh mục giải trí"
   },
   "utility": {
-    "imageUrl": "https://androidapkst-hrb7qy2c.manus.space/manus-storage/tvkho-utility-visual_01a90a0e.jpg",
+    "imageUrl": "https://github.com/minhduc290613/android-tv-apk-store/releases/download/tvkho-assets-v1/tvkho-utility-visual.jpg",
     "imageAlt": "Minh hoạ tiện ích Android TV",
     "eyebrow": "TỐI ƯU THIẾT BỊ",
     "title": "Công cụ hữu ích"

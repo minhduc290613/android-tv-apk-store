@@ -29,6 +29,12 @@ Nhóm `appLabels` dùng để thay đổi tập trung nhãn **Xem nổi bật**,
 
 Nhóm `search` trong `site-config.json` dùng để thay đổi placeholder, nhãn trợ năng, nhãn nút xoá và cách hiển thị số kết quả của ô tìm kiếm ứng dụng.
 
+## Tài nguyên phục vụ từ GitHub
+
+Các ảnh logo và minh hoạ của website được lưu trong GitHub Release `tvkho-assets-v1`; `site-config.json` dùng URL tải trực tiếp từ release này. Danh mục và cấu hình cũng nằm trong `client/public/`, nên GitHub Pages phục vụ trực tiếp cùng website. Phông chữ đã dùng fallback hệ thống, không còn tải từ Google Fonts.
+
+Tập lệnh analytics ngoài cũng đã được bỏ khỏi trang tĩnh. Sau khi triển khai, các yêu cầu tài nguyên nội dung chỉ còn trỏ đến GitHub Pages hoặc GitHub Release của chính repository.
+
 Các trường ảnh như `logoUrl`, `faviconUrl`, `hero.imageUrl`, `editorial.imageUrl` và `utility.imageUrl` cần là URL ảnh hợp lệ. Website tự cập nhật tiêu đề trình duyệt, mô tả và favicon theo cấu hình này. Nếu một URL ảnh bị để trống, giao diện vẫn giữ màu nền phù hợp thay vì lỗi hiển thị.
 
 ## Xuất bản bằng GitHub Pages

@@ -22,3 +22,6 @@
 - [x] Rà soát tìm kiếm hiện có và các trạng thái hiển thị.
 - [x] Bổ sung nút xoá nhanh, trạng thái kết quả và nội dung cấu hình cho tìm kiếm.
 - [x] Kiểm tra tìm kiếm trên bản xem trước và GitHub Pages.
+- [x] Kiểm kê URL ảnh, phông chữ và tệp dữ liệu gọi bên ngoài.
+- [x] Đưa ảnh và tệp dữ liệu cần thiết vào repository.
+- [x] Cập nhật cấu hình để dùng tài nguyên nội bộ và kiểm tra GitHub Pages.
