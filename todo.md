@@ -25,3 +25,6 @@
 - [x] Kiểm kê URL ảnh, phông chữ và tệp dữ liệu gọi bên ngoài.
 - [x] Đưa ảnh và tệp dữ liệu cần thiết vào repository.
 - [x] Cập nhật cấu hình để dùng tài nguyên nội bộ và kiểm tra GitHub Pages.
+- [x] Kiểm tra cấu hình Vite và hostname bị chặn.
+- [x] Thêm hostname bản xem trước vào allowedHosts.
+- [x] Khởi động lại và xác minh bản xem trước hoạt động.

@@ -21,4 +21,7 @@ export default defineConfig({
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
   },
+  server: {
+    allowedHosts: ["5173-inzts2tze4cgcfbucna9x-ad94da8c.sg1.manus.computer", ".manus.computer"],
+  },
 });
