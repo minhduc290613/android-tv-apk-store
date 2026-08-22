@@ -10,3 +10,6 @@
 - [x] Kiểm tra trạng thái GitHub Pages của repository.
 - [x] Kích hoạt GitHub Pages với nguồn GitHub Actions nếu chưa được bật.
 - [x] Xác minh workflow Pages sau khi cập nhật cấu hình.
+- [x] Kiểm tra URL ảnh minh hoạ đang được dùng trên GitHub Pages.
+- [x] Thay đường dẫn ảnh bằng nguồn tương thích GitHub Pages.
+- [ ] Triển khai lại và xác minh ảnh hiển thị công khai.
