@@ -17,3 +17,5 @@ Workflow run `32569112207` đã triển khai thành công bản sửa bộ lọc
 Kiểm tra trực tiếp trên GitHub Pages: tìm kiếm với từ không khớp trả về trạng thái rỗng, sau đó nút **Xóa bộ lọc** khôi phục thành công danh sách 8 ứng dụng.
 
 Workflow run `32569726630` đã triển khai thành công trải nghiệm tìm kiếm mở rộng. Kiểm tra trực tiếp xác nhận truy vấn `nova` lọc còn 1 ứng dụng, nút xoá nhanh xuất hiện và khôi phục lại danh sách 8 ứng dụng.
+
+Workflow run `32570079358` đã triển khai thành công phiên bản tài nguyên tự chủ. Kiểm tra GitHub Pages xác nhận logo và banner hiển thị từ GitHub Release `tvkho-assets-v1`; không còn yêu cầu runtime tới Google Fonts, Manus Storage hoặc analytics ngoài.
