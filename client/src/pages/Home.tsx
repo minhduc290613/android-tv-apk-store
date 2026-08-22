@@ -27,6 +27,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { loadAppCatalog, type AppItem, type Category } from "@/lib/app-catalog";
+import { DEFAULT_SITE_CONFIG, loadSiteConfig } from "@/lib/site-config";
 
 const categories: { name: Category; icon: typeof Grid2X2; description: string }[] = [
   { name: "Tất cả", icon: Grid2X2, description: "Toàn bộ thư viện" },
@@ -81,6 +82,7 @@ export default function Home() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState<Category>("Tất cả");
   const [apps, setApps] = useState<AppItem[]>([]);
+  const [site, setSite] = useState(DEFAULT_SITE_CONFIG);
   const [catalogState, setCatalogState] = useState<"loading" | "ready" | "error">("loading");
   const [selectedApp, setSelectedApp] = useState<AppItem | null>(null);
   const [navOpen, setNavOpen] = useState(false);
@@ -97,6 +99,22 @@ export default function Home() {
 
   const featured = apps.filter((app) => app.featured);
   const recommended = apps.filter((app) => app.category === "Công cụ" || app.category === "Trình phát");
+
+  useEffect(() => {
+    let isCurrent = true;
+    loadSiteConfig().then((config) => {
+      if (isCurrent) setSite(config);
+    }).catch(() => undefined);
+    return () => { isCurrent = false; };
+  }, []);
+
+  useEffect(() => {
+    document.title = site.metadata.title;
+    document.querySelector('meta[name="description"]')?.setAttribute("content", site.metadata.description);
+    document.querySelector('meta[name="theme-color"]')?.setAttribute("content", site.brand.themeColor);
+    const favicon = document.querySelector('link[rel="icon"]');
+    if (favicon && site.brand.faviconUrl) favicon.setAttribute("href", site.brand.faviconUrl);
+  }, [site]);
 
   useEffect(() => {
     let isCurrent = true;
@@ -147,9 +165,9 @@ export default function Home() {
   return (
     <div className="tvkho-shell">
       <aside className={`side-nav ${navOpen ? "side-nav--open" : ""}`} aria-label="Điều hướng chính">
-        <a className="brand" href="#top" aria-label="TVKHO APK - đầu trang">
-          <span className="brand-mark" aria-hidden="true"><span className="brand-mark__fallback"><i /></span><img src="/manus-storage/tvkho-logo-mark_3a36f3d5.png" alt="" onError={(event) => { event.currentTarget.style.display = "none"; }} /></span>
-          <span className="brand-word">TV<span>KHO</span><small>APK</small></span>
+        <a className="brand" href="#top" aria-label={`${site.brand.name} - đầu trang`}>
+          <span className="brand-mark" aria-hidden="true"><span className="brand-mark__fallback"><i /></span>{site.brand.logoUrl && <img src={site.brand.logoUrl} alt="" onError={(event) => { event.currentTarget.style.display = "none"; }} />}</span>
+          <span className="brand-word">{site.brand.wordmarkPrefix}<span>{site.brand.wordmarkAccent}</span><small>{site.brand.wordmarkSuffix}</small></span>
         </a>
         <nav>
           <a className="side-nav__item side-nav__item--active" href="#top"><Sparkles size={19} /> Khám phá</a>
@@ -158,8 +176,8 @@ export default function Home() {
           <a className="side-nav__item" href="#safe"><ShieldCheck size={19} /> Hướng dẫn</a>
         </nav>
         <div className="side-nav__footer">
-          <div className="remote-tip"><span className="remote-key">↑↓</span><p>Di chuyển</p></div>
-          <div className="remote-tip"><span className="remote-key">OK</span><p>Chọn</p></div>
+          <div className="remote-tip"><span className="remote-key">↑↓</span><p>{site.labels.move}</p></div>
+          <div className="remote-tip"><span className="remote-key">OK</span><p>{site.labels.select}</p></div>
         </div>
       </aside>
 
@@ -179,26 +197,26 @@ export default function Home() {
             />
             <kbd>Ctrl K</kbd>
           </div>
-          <a className="safe-pill" href="#safe"><ShieldCheck size={16} /> Tải có kiểm soát</a>
+          <a className="safe-pill" href="#safe"><ShieldCheck size={16} /> {site.labels.safeDownload}</a>
         </header>
 
         <section className="hero" aria-labelledby="hero-title">
-          <img className="hero__image" src="/manus-storage/tvkho-hero-living-room_e276c13e.jpg" alt="Không gian phòng khách với Android TV" />
+          {site.hero.imageUrl && <img className="hero__image" src={site.hero.imageUrl} alt={site.hero.imageAlt} />}
           <div className="hero__shade" />
           <div className="hero__copy">
-            <p className="eyebrow"><span /> KHO APK CHO ANDROID TV</p>
-            <h1 id="hero-title">Ứng dụng đáng cài <em>tối nay.</em></h1>
-            <p className="hero__lede">Tuyển chọn ứng dụng tối ưu cho màn hình lớn, thao tác mượt bằng điều khiển từ xa.</p>
+            <p className="eyebrow"><span /> {site.hero.eyebrow}</p>
+            <h1 id="hero-title">{site.hero.title} <em>{site.hero.titleAccent}</em></h1>
+            <p className="hero__lede">{site.hero.description}</p>
             <div className="hero__actions">
-              <a className="button button--amber" href="#library">Khám phá thư viện <ArrowRight size={18} /></a>
-              <button className="button button--quiet" onClick={() => featured[0] && setSelectedApp(featured[0])} disabled={!featured[0]}><Info size={18} /> Xem nổi bật</button>
+              <a className="button button--amber" href="#library">{site.hero.primaryCta} <ArrowRight size={18} /></a>
+              <button className="button button--quiet" onClick={() => featured[0] && setSelectedApp(featured[0])} disabled={!featured[0]}><Info size={18} /> {site.hero.secondaryCta}</button>
             </div>
           </div>
-          <div className="hero__counter"><strong>{String(apps.length).padStart(2, "0")}</strong><span>ứng dụng<br />được chọn lọc</span></div>
+          <div className="hero__counter"><strong>{String(apps.length).padStart(2, "0")}</strong><span>{site.hero.counterLabel}</span></div>
         </section>
 
         <section className="category-section" aria-label="Danh mục ứng dụng">
-          <div className="section-heading section-heading--compact"><p className="eyebrow"><span /> LỐI TẮT</p><h2>Chọn theo nhu cầu</h2></div>
+          <div className="section-heading section-heading--compact"><p className="eyebrow"><span /> {site.labels.categoryEyebrow}</p><h2>{site.labels.categoryTitle}</h2></div>
           <div className="category-rail">
             {categories.map((item) => {
               const Icon = item.icon;
@@ -219,8 +237,8 @@ export default function Home() {
 
         <section id="library" className="library-section" aria-labelledby="library-title">
           <div className="section-heading">
-            <div><p className="eyebrow"><span /> THƯ VIỆN APK</p><h2 id="library-title">{category === "Tất cả" ? "Cửa hàng tuyển chọn" : category}</h2></div>
-            <div className="heading-aside"><p className="section-heading__meta">{results.length} ứng dụng phù hợp</p><p className="focus-hint"><b>← →</b> Duyệt ray <b>OK</b> Xem</p></div>
+            <div><p className="eyebrow"><span /> {site.labels.libraryEyebrow}</p><h2 id="library-title">{category === "Tất cả" ? site.labels.libraryTitle : category}</h2></div>
+            <div className="heading-aside"><p className="section-heading__meta">{results.length} ứng dụng phù hợp</p><p className="focus-hint"><b>← →</b> {site.labels.remoteHint} <b>OK</b> {site.labels.viewHint}</p></div>
           </div>
           {catalogState === "loading" ? (
             <div className="empty-state"><p>Đang tải danh mục ứng dụng…</p></div>
@@ -234,23 +252,23 @@ export default function Home() {
         </section>
 
         <section id="new" className="editorial-rail" aria-labelledby="editorial-title">
-          <div className="editorial-rail__visual"><img src="/manus-storage/tvkho-streaming-visual_635ce444.jpg" alt="Minh hoạ ứng dụng giải trí" /></div>
-          <div className="editorial-rail__content"><p className="eyebrow"><span /> CHỌN LỌC TRONG TUẦN</p><h2 id="editorial-title">Giải trí, vừa đúng chất TV.</h2><p>Từ xem video tới khám phá thư viện cá nhân, các ứng dụng ở đây ưu tiên chữ lớn, điều hướng rõ và trải nghiệm phòng khách.</p><button className="text-action" onClick={() => chooseCategory("Giải trí")}>Xem danh mục giải trí <ArrowRight size={17} /></button></div>
+          <div className="editorial-rail__visual">{site.editorial.imageUrl && <img src={site.editorial.imageUrl} alt={site.editorial.imageAlt} />}</div>
+          <div className="editorial-rail__content"><p className="eyebrow"><span /> {site.editorial.eyebrow}</p><h2 id="editorial-title">{site.editorial.title}</h2><p>{site.editorial.description}</p><button className="text-action" onClick={() => chooseCategory("Giải trí")}>{site.editorial.cta} <ArrowRight size={17} /></button></div>
           <div className="editorial-rail__list">{featured.map((app) => <AppCard key={app.id} app={app} onOpen={setSelectedApp} />)}</div>
         </section>
 
         <section className="strip-section" aria-labelledby="utility-title">
-          <div className="strip-section__visual"><img src="/manus-storage/tvkho-utility-visual_01a90a0e.jpg" alt="Minh hoạ tiện ích Android TV" /></div>
-          <div className="section-heading"><div><p className="eyebrow"><span /> TỐI ƯU THIẾT BỊ</p><h2 id="utility-title">Công cụ hữu ích</h2></div><div className="rail-arrows"><ChevronLeft size={19} /><ChevronRight size={19} /></div></div>
+          <div className="strip-section__visual">{site.utility.imageUrl && <img src={site.utility.imageUrl} alt={site.utility.imageAlt} />}</div>
+          <div className="section-heading"><div><p className="eyebrow"><span /> {site.utility.eyebrow}</p><h2 id="utility-title">{site.utility.title}</h2></div><div className="rail-arrows"><ChevronLeft size={19} /><ChevronRight size={19} /></div></div>
           <div className="app-grid app-grid--compact">{recommended.map((app) => <AppCard key={app.id} app={app} onOpen={setSelectedApp} />)}</div>
         </section>
 
         <section id="safe" className="safety-note" aria-labelledby="safety-title">
           <ShieldCheck size={36} />
-          <div><p className="eyebrow"><span /> GHI NHỚ TRƯỚC KHI CÀI</p><h2 id="safety-title">Chỉ thêm liên kết APK từ nguồn mà bạn có quyền phân phối.</h2><p>Website này là một giao diện tĩnh. Trước khi xuất bản, hãy chỉnh lại danh mục ứng dụng, phiên bản và các nút tải để trỏ tới tệp APK hợp pháp của bạn.</p></div>
+          <div><p className="eyebrow"><span /> {site.notice.eyebrow}</p><h2 id="safety-title">{site.notice.title}</h2><p>{site.notice.description}</p></div>
         </section>
 
-        <footer className="footer"><span>TVKHO APK · Giao diện cho Android TV</span><span>Điều hướng: Tab / Enter / ↑ ↓ ← →</span></footer>
+        <footer className="footer"><span>{site.footer.left}</span><span>{site.footer.right}</span></footer>
       </main>
 
       {selectedApp && (

@@ -21,6 +21,12 @@ Ví dụ, để thêm đường dẫn tải cho một mục, thay giá trị r�
 
 Khi người dùng nhấn **Lấy APK an toàn**, website sẽ mở `downloadUrl` trong một tab mới. Chỉ thêm liên kết tới tệp APK hoặc trang tải mà bạn có quyền phân phối.
 
+## Tùy chỉnh nhận diện và nội dung chung
+
+Tệp `client/public/site-config.json` chứa thông tin chung của website. Bạn có thể thay tên trang, wordmark, URL logo, favicon, ảnh banner, phần giới thiệu, CTA, tiêu đề của các khu vực, thông tin hiển thị dưới chân trang và metadata SEO trong tệp này.
+
+Các trường ảnh như `logoUrl`, `faviconUrl`, `hero.imageUrl`, `editorial.imageUrl` và `utility.imageUrl` cần là URL ảnh hợp lệ. Website tự cập nhật tiêu đề trình duyệt, mô tả và favicon theo cấu hình này. Nếu một URL ảnh bị để trống, giao diện vẫn giữ màu nền phù hợp thay vì lỗi hiển thị.
+
 ## Xuất bản bằng GitHub Pages
 
 1. Đẩy mã nguồn lên nhánh `main` của một repository GitHub.

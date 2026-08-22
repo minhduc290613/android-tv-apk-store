@@ -1,3 +1,6 @@
 - [x] Tạo tệp JSON riêng cho danh mục ứng dụng và liên kết tải APK.
 - [x] Cập nhật giao diện để đọc danh mục từ tệp dữ liệu.
 - [x] Kiểm tra bản dựng và bổ sung hướng dẫn chỉnh sửa dữ liệu.
+- [x] Tạo tệp cấu hình thương hiệu chứa logo, banner, tên và giới thiệu.
+- [x] Kết nối giao diện và metadata với tệp cấu hình thương hiệu.
+- [x] Kiểm tra bản dựng và cập nhật hướng dẫn sử dụng tệp cấu hình.

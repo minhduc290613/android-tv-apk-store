@@ -1,0 +1,60 @@
+{
+  "brand": {
+    "name": "TVKHO APK",
+    "wordmarkPrefix": "TV",
+    "wordmarkAccent": "KHO",
+    "wordmarkSuffix": "APK",
+    "logoUrl": "/manus-storage/tvkho-logo-mark_3a36f3d5.png",
+    "faviconUrl": "/manus-storage/tvkho-logo-mark_3a36f3d5.png",
+    "themeColor": "#0e1212"
+  },
+  "metadata": {
+    "title": "TVKHO APK — Ứng dụng cho Android TV",
+    "description": "TVKHO APK — kho ứng dụng Android TV với giao diện tối ưu điều khiển từ xa."
+  },
+  "hero": {
+    "imageUrl": "/manus-storage/tvkho-hero-living-room_e276c13e.jpg",
+    "imageAlt": "Không gian phòng khách với Android TV",
+    "eyebrow": "KHO APK CHO ANDROID TV",
+    "title": "Ứng dụng đáng cài",
+    "titleAccent": "tối nay.",
+    "description": "Tuyển chọn ứng dụng tối ưu cho màn hình lớn, thao tác mượt bằng điều khiển từ xa.",
+    "primaryCta": "Khám phá thư viện",
+    "secondaryCta": "Xem nổi bật",
+    "counterLabel": "ứng dụng được chọn lọc"
+  },
+  "labels": {
+    "safeDownload": "Tải có kiểm soát",
+    "move": "Di chuyển",
+    "select": "Chọn",
+    "categoryEyebrow": "LỐI TẮT",
+    "categoryTitle": "Chọn theo nhu cầu",
+    "libraryEyebrow": "THƯ VIỆN APK",
+    "libraryTitle": "Cửa hàng tuyển chọn",
+    "remoteHint": "Duyệt ray",
+    "viewHint": "Xem"
+  },
+  "editorial": {
+    "imageUrl": "/manus-storage/tvkho-streaming-visual_635ce444.jpg",
+    "imageAlt": "Minh hoạ ứng dụng giải trí",
+    "eyebrow": "CHỌN LỌC TRONG TUẦN",
+    "title": "Giải trí, vừa đúng chất TV.",
+    "description": "Từ xem video tới khám phá thư viện cá nhân, các ứng dụng ở đây ưu tiên chữ lớn, điều hướng rõ và trải nghiệm phòng khách.",
+    "cta": "Xem danh mục giải trí"
+  },
+  "utility": {
+    "imageUrl": "/manus-storage/tvkho-utility-visual_01a90a0e.jpg",
+    "imageAlt": "Minh hoạ tiện ích Android TV",
+    "eyebrow": "TỐI ƯU THIẾT BỊ",
+    "title": "Công cụ hữu ích"
+  },
+  "notice": {
+    "eyebrow": "GHI NHỚ TRƯỚC KHI CÀI",
+    "title": "Chỉ thêm liên kết APK từ nguồn mà bạn có quyền phân phối.",
+    "description": "Website này là một giao diện tĩnh. Trước khi xuất bản, hãy chỉnh lại danh mục ứng dụng, phiên bản và các nút tải để trỏ tới tệp APK hợp pháp của bạn."
+  },
+  "footer": {
+    "left": "TVKHO APK · Giao diện cho Android TV",
+    "right": "Điều hướng: Tab / Enter / ↑ ↓ ← →"
+  }
+}
