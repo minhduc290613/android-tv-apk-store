@@ -27,6 +27,8 @@ Tệp `client/public/site-config.json` chứa thông tin chung của website. B�
 
 Nhóm `appLabels` dùng để thay đổi tập trung nhãn **Xem nổi bật**, **Các ứng dụng được chọn lọc** và **Tất cả ứng dụng**. Trong `footer`, trường `madeWithLove` dùng cho dòng ghi công ở cuối trang, mặc định là `minhduc290613 made with love`.
 
+Nhóm `search` trong `site-config.json` dùng để thay đổi placeholder, nhãn trợ năng, nhãn nút xoá và cách hiển thị số kết quả của ô tìm kiếm ứng dụng.
+
 Các trường ảnh như `logoUrl`, `faviconUrl`, `hero.imageUrl`, `editorial.imageUrl` và `utility.imageUrl` cần là URL ảnh hợp lệ. Website tự cập nhật tiêu đề trình duyệt, mô tả và favicon theo cấu hình này. Nếu một URL ảnh bị để trống, giao diện vẫn giữ màu nền phù hợp thay vì lỗi hiển thị.
 
 ## Xuất bản bằng GitHub Pages

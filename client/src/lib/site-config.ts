@@ -35,6 +35,7 @@ export type SiteConfig = {
     viewHint: string;
   };
   appLabels: { featuredButton: string; selectedApps: string; allApps: string };
+  search: { placeholder: string; ariaLabel: string; clearLabel: string; resultPrefix: string; resultSuffix: string };
   editorial: { imageUrl: string; imageAlt: string; eyebrow: string; title: string; description: string; cta: string };
   utility: { imageUrl: string; imageAlt: string; eyebrow: string; title: string };
   notice: { eyebrow: string; title: string; description: string };
@@ -47,6 +48,7 @@ export const DEFAULT_SITE_CONFIG: SiteConfig = {
   hero: { imageUrl: "", imageAlt: "Không gian Android TV", eyebrow: "KHO APK CHO ANDROID TV", title: "Ứng dụng đáng cài", titleAccent: "tối nay.", description: "Tuyển chọn ứng dụng tối ưu cho màn hình lớn, thao tác mượt bằng điều khiển từ xa.", primaryCta: "Khám phá thư viện", counterLabel: "ứng dụng được chọn lọc" },
   labels: { safeDownload: "Tải có kiểm soát", move: "Di chuyển", select: "Chọn", categoryEyebrow: "LỐI TẮT", categoryTitle: "Chọn theo nhu cầu", libraryEyebrow: "THƯ VIỆN APK", libraryTitle: "Cửa hàng tuyển chọn", remoteHint: "Duyệt ray", viewHint: "Xem" },
   appLabels: { featuredButton: "Xem nổi bật", selectedApps: "Các ứng dụng được chọn lọc", allApps: "Tất cả ứng dụng" },
+  search: { placeholder: "Tìm tên ứng dụng, thể loại hoặc nhãn", ariaLabel: "Tìm kiếm ứng dụng", clearLabel: "Xóa nội dung tìm kiếm", resultPrefix: "Tìm thấy", resultSuffix: "ứng dụng phù hợp" },
   editorial: { imageUrl: "", imageAlt: "Minh hoạ ứng dụng giải trí", eyebrow: "CHỌN LỌC TRONG TUẦN", title: "Giải trí, vừa đúng chất TV.", description: "", cta: "Xem danh mục giải trí" },
   utility: { imageUrl: "", imageAlt: "Minh hoạ tiện ích Android TV", eyebrow: "TỐI ƯU THIẾT BỊ", title: "Công cụ hữu ích" },
   notice: { eyebrow: "GHI NHỚ TRƯỚC KHI CÀI", title: "Chỉ thêm liên kết APK từ nguồn mà bạn có quyền phân phối.", description: "" },
@@ -58,17 +60,19 @@ function isText(value: unknown): value is string { return typeof value === "stri
 export function isSiteConfig(value: unknown): value is SiteConfig {
   if (!value || typeof value !== "object") return false;
   const config = value as Record<string, unknown>;
-  const parts = ["brand", "metadata", "hero", "labels", "appLabels", "editorial", "utility", "notice", "footer"];
+  const parts = ["brand", "metadata", "hero", "labels", "appLabels", "search", "editorial", "utility", "notice", "footer"];
   if (!parts.every((key) => config[key] && typeof config[key] === "object")) return false;
   const brand = config.brand as Record<string, unknown>;
   const hero = config.hero as Record<string, unknown>;
   const metadata = config.metadata as Record<string, unknown>;
   const appLabels = config.appLabels as Record<string, unknown>;
+  const search = config.search as Record<string, unknown>;
   const footer = config.footer as Record<string, unknown>;
   return ["name", "wordmarkPrefix", "wordmarkAccent", "wordmarkSuffix", "logoUrl", "faviconUrl", "themeColor"].every((key) => isText(brand[key]))
     && ["title", "description"].every((key) => isText(metadata[key]))
     && ["imageUrl", "imageAlt", "eyebrow", "title", "titleAccent", "description", "primaryCta", "counterLabel"].every((key) => isText(hero[key]))
     && ["featuredButton", "selectedApps", "allApps"].every((key) => isText(appLabels[key]))
+    && ["placeholder", "ariaLabel", "clearLabel", "resultPrefix", "resultSuffix"].every((key) => isText(search[key]))
     && ["left", "madeWithLove", "right"].every((key) => isText(footer[key]));
 }
 

@@ -157,6 +157,11 @@ export default function Home() {
     setCategory("Tất cả");
   };
 
+  const clearSearch = () => {
+    setQuery("");
+    searchRef.current?.focus();
+  };
+
   const handleDownload = (app: AppItem) => {
     if (app.downloadUrl.trim()) {
       window.open(app.downloadUrl, "_blank", "noopener,noreferrer");
@@ -197,9 +202,10 @@ export default function Home() {
               ref={searchRef}
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Tìm tên ứng dụng hoặc thể loại"
-              aria-label="Tìm kiếm ứng dụng"
+              placeholder={site.search.placeholder}
+              aria-label={site.search.ariaLabel}
             />
+            {query && <button className="search-clear" type="button" onClick={clearSearch} aria-label={site.search.clearLabel}><X size={15} /></button>}
             <kbd>Ctrl K</kbd>
           </div>
           <a className="safe-pill" href="#safe"><ShieldCheck size={16} /> {site.labels.safeDownload}</a>
@@ -243,7 +249,7 @@ export default function Home() {
         <section id="library" className="library-section" aria-labelledby="library-title">
           <div className="section-heading">
             <div><p className="eyebrow"><span /> {site.labels.libraryEyebrow}</p><h2 id="library-title">{category === "Tất cả" ? site.labels.libraryTitle : category}</h2></div>
-            <div className="heading-aside"><p className="section-heading__meta">{results.length} ứng dụng phù hợp</p><p className="focus-hint"><b>← →</b> {site.labels.remoteHint} <b>OK</b> {site.labels.viewHint}</p></div>
+            <div className="heading-aside"><p className="section-heading__meta">{site.search.resultPrefix} {results.length} {site.search.resultSuffix}</p><p className="focus-hint"><b>← →</b> {site.labels.remoteHint} <b>OK</b> {site.labels.viewHint}</p></div>
           </div>
           {catalogState === "loading" ? (
             <div className="empty-state"><p>Đang tải danh mục ứng dụng…</p></div>

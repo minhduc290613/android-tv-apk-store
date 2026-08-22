@@ -38,6 +38,13 @@
     "selectedApps": "Các ứng dụng được chọn lọc",
     "allApps": "Tất cả ứng dụng"
   },
+  "search": {
+    "placeholder": "Tìm tên ứng dụng, thể loại hoặc nhãn",
+    "ariaLabel": "Tìm kiếm ứng dụng",
+    "clearLabel": "Xóa nội dung tìm kiếm",
+    "resultPrefix": "Tìm thấy",
+    "resultSuffix": "ứng dụng phù hợp"
+  },
   "editorial": {
     "imageUrl": "https://androidapkst-hrb7qy2c.manus.space/manus-storage/tvkho-streaming-visual_635ce444.jpg",
     "imageAlt": "Minh hoạ ứng dụng giải trí",
