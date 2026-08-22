@@ -95,7 +95,7 @@ export default function Home() {
       const byQuery = !normalized || [app.name, app.category, ...app.tags].join(" ").toLowerCase().includes(normalized);
       return byCategory && byQuery;
     });
-  }, [category, query]);
+  }, [apps, category, query]);
 
   const featured = apps.filter((app) => app.featured);
   const recommended = apps.filter((app) => app.category === "Công cụ" || app.category === "Trình phát");
@@ -150,6 +150,11 @@ export default function Home() {
     setCategory(name);
     setNavOpen(false);
     document.getElementById("library")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const resetFilters = () => {
+    setQuery("");
+    setCategory("Tất cả");
   };
 
   const handleDownload = (app: AppItem) => {
@@ -247,7 +252,7 @@ export default function Home() {
               {results.map((app) => <AppCard key={app.id} app={app} onOpen={setSelectedApp} />)}
             </div>
           ) : (
-            <div className="empty-state"><Search size={28} /><p>{catalogState === "error" ? "Không thể tải apps.json. Hãy kiểm tra cấu trúc tệp dữ liệu." : "Chưa tìm thấy ứng dụng phù hợp."}</p>{catalogState === "ready" && <button onClick={() => { setQuery(""); setCategory("Tất cả"); }}>Xóa bộ lọc</button>}</div>
+            <div className="empty-state"><Search size={28} /><p>{catalogState === "error" ? "Không thể tải apps.json. Hãy kiểm tra cấu trúc tệp dữ liệu." : "Chưa tìm thấy ứng dụng phù hợp."}</p>{catalogState === "ready" && <button onClick={resetFilters}>Xóa bộ lọc</button>}</div>
           )}
         </section>
 
