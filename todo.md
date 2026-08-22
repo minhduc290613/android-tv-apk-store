@@ -4,3 +4,6 @@
 - [x] Tạo tệp cấu hình thương hiệu chứa logo, banner, tên và giới thiệu.
 - [x] Kết nối giao diện và metadata với tệp cấu hình thương hiệu.
 - [x] Kiểm tra bản dựng và cập nhật hướng dẫn sử dụng tệp cấu hình.
+- [x] Xác định các nguồn khai báo phiên bản pnpm trong dự án và workflow.
+- [x] Điều chỉnh workflow để chỉ dùng một nguồn phiên bản pnpm.
+- [x] Kiểm tra bản dựng sau khi sửa cấu hình triển khai.
