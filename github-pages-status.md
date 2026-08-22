@@ -11,3 +11,7 @@ Workflow run `32568554622` triển khai bản sửa router đã hoàn tất thà
 Ảnh minh hoạ ban đầu dùng đường dẫn tuyệt đối từ gốc `/manus-storage/...`, khiến GitHub Pages diễn giải chúng là `minhduc290613.github.io/manus-storage/...`. Cấu hình ảnh được chuyển sang URL tuyệt đối tại tên miền triển khai Manus, nơi đã xác minh ảnh banner có thể truy cập công khai.
 
 Sau workflow run `32568846343` thành công, kiểm tra trực tiếp GitHub Pages xác nhận logo và banner hero hiển thị đúng tại URL công khai.
+
+Workflow run `32569112207` đã triển khai thành công bản sửa bộ lọc. Bản xem trước xác nhận thư viện hiển thị đầy đủ 8 ứng dụng ngay sau khi danh mục tải xong.
+
+Kiểm tra trực tiếp trên GitHub Pages: tìm kiếm với từ không khớp trả về trạng thái rỗng, sau đó nút **Xóa bộ lọc** khôi phục thành công danh sách 8 ứng dụng.
