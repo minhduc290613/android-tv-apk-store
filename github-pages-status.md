@@ -9,3 +9,5 @@ Lần kiểm tra đầu tiên tại URL GitHub Pages trả về màn 404 của �
 Workflow run `32568554622` triển khai bản sửa router đã hoàn tất thành công. Website hiện hiển thị trang chủ tại `https://minhduc290613.github.io/android-tv-apk-store/`.
 
 Ảnh minh hoạ ban đầu dùng đường dẫn tuyệt đối từ gốc `/manus-storage/...`, khiến GitHub Pages diễn giải chúng là `minhduc290613.github.io/manus-storage/...`. Cấu hình ảnh được chuyển sang URL tuyệt đối tại tên miền triển khai Manus, nơi đã xác minh ảnh banner có thể truy cập công khai.
+
+Sau workflow run `32568846343` thành công, kiểm tra trực tiếp GitHub Pages xác nhận logo và banner hero hiển thị đúng tại URL công khai.
