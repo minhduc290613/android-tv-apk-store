@@ -50,3 +50,7 @@ Tệp `.github/workflows/deploy-pages.yml` đã tự động build và triển k
 ## Lưu ý phân phối APK
 
 Giao diện hiện có dữ liệu minh hoạ để bạn thay thế. Không đưa liên kết tải hoặc tệp APK mà bạn không được phép phân phối. Luôn cung cấp thông tin phiên bản, dung lượng và nguồn tải rõ ràng cho người dùng.
+
+## Donate me
+[![Donate Me](https://img.shields.io/badge/Donate-Me-ff69b4?style=for-the-badge&logo=githubsponsors&logoColor=white)](https://donate.protechvn.io.vn) <br/>
+
